@@ -1,0 +1,37 @@
+<app-menu></app-menu>
+
+<h3>Bienvenido {{ mensaje }}</h3>
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalAlumno" (click)="nuevo()" >Nuevo registro</button>
+
+
+<table class="table">
+    <thead >
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">RFC</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Paterno</th>
+            <th scope="col">Materno</th>
+            <th scope="col">Tel celular</th>
+            <th scope="col">Email</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+    <tr *ngFor = "let itm of profesores; let idx = index">
+        <td>{{idx+1}}</td>
+        <td>{{itm.rfc}}</td>
+        <td>{{itm.nombre}}</td>
+        <td>{{itm.paterno}}</td>
+        <td>{{itm.materno}}</td>        
+        <td>{{itm.celular}}</td>        
+        <td>{{itm.email}}</td>        
+        <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAlumno" (click)="editar(itm)" >Editar</button>
+        </td>        
+        <td>
+            <button type="button" class="btn btn-danger" (click)="eliminar(itm)" >Eliminar</button>
+        </td>        
+    </tr>
+</table>

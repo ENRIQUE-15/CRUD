@@ -1,0 +1,84 @@
+<app-menu></app-menu>
+
+<h3>Bienvenido {{ mensaje }}</h3>
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalAlumno" (click)="nuevo()" >Nuevo registro</button>
+
+<table class="table">
+    <thead >
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Cuenta</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Paterno</th>
+            <th scope="col">Materno</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+    <tr *ngFor = "let itm of alumnosN; let idx = index">
+        <td>{{idx+1}}</td>
+        <td>{{itm.cuenta}}</td>
+        <td>{{itm.nombre}}</td>
+        <td>{{itm.paterno}}</td>
+        <td>{{itm.materno}}</td>        
+        <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAlumno" (click)="editar(itm)" >Editar</button>
+        </td>        
+        <td>
+            <button type="button" class="btn btn-danger" (click)="eliminar(itm)" >Eliminar</button>
+        </td>        
+    </tr>
+</table>
+
+
+  
+  <!-- Modal para crear y modificar datos del alumno -->
+  <div class="modal fade" id="ModalAlumno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Datos del alumno</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <div class="container-fluid">
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label for="txtcuenta">Cuenta</label>   
+                        <input type="text" class="form-control" id="txtcuenta"  [(ngModel)]="scuenta"  disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" style="width: 100%;">
+                        <label for="txtnombre">Nombre</label>   
+                        <input type="text" class="form-control" id="txtnombre" [(ngModel)]="snombre"  />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" style="width: 100%;">
+                        <label for="txtpaterno">Apellido paterno</label>   
+                        <input type="text" class="form-control" id="txtpaterno" [(ngModel)]="spaterno"  />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" style="width: 100%;">
+                        <label for="txtmaterno">Apellido materno</label>   
+                        <input type="text" class="form-control" id="txtmaterno" [(ngModel)]="smaterno"  />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cierramodal"  #cierramodal  data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary"  (click)="guardar()" >Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
